@@ -1,0 +1,17 @@
+Package: nemapping
+Type: Package
+Title: R Package Template
+Version: 0.1.0
+Author: Fan Shen
+Maintainer: Fan Shen <van.shen@mail.utoronto.ca>
+Description: nemapping plots the map of non-exon existed in reads in the 
+            final transcript sequences assembled by De Novo (Trinity). 
+            The distribution is based on the number of reads that have 
+            non-exon sequences overlap with the exon sequence. 
+            Furthermore, a graph or chart should produced for visualization.
+License: file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests:
+    testthat
+RoxygenNote: 6.1.0

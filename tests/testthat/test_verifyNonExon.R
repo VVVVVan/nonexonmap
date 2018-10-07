@@ -7,7 +7,7 @@ context("verifyNonExon")
 readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
 intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
 
-load(system.file("extdata/testdata", "testAssets2.Rdata", package = "nonexonmap"))
+load(system.file("extdata/testdata", "testDataVerify.Rdata", package = "nonexonmap"))
 verifyNonExon <- usePosition("verify")
 #
 # ==== END SETUP AND PREPARE ===================================================

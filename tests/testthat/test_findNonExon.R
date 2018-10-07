@@ -7,7 +7,7 @@ context("findNonExon")
 readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
 transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
 
-load(system.file("extdata/testdata", "testAssets.Rdata", package = "nonexonmap"))
+load(system.file("extdata/testdata", "testDataFind.Rdata", package = "nonexonmap"))
 findNonExon <- usePosition("find")
 #
 # ==== END SETUP AND PREPARE ===================================================

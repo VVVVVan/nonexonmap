@@ -2,7 +2,7 @@
 % Please edit documentation in R/positionNonExon.R
 \name{positionNonExon}
 \alias{positionNonExon}
-\title{\code{positionNonExon} output the positions of start alignment on references and number of nucleotides on reads that matches and unmatches to references.}
+\title{output the positions of start alignment on references and number of nucleotides on reads that matches and unmatches to references.}
 \usage{
 positionNonExon(readFile, referenceFile, outputFile)
 }
@@ -27,7 +27,7 @@ positionNonExon("exon.fasta", "wholeGene.fasta", "outputExonWholegene.BAM")
 }
 }
 \seealso{
-\code{\link{buildindex}} Build an index for read mapping to perform.
+\code{\link{Rsubread.buildindex}} Build an index for read mapping to perform.
 
-\code{\link{align}} Align DNA and RNA sequencing reads and report.
+\code{\link{Rsubread.align}} Align DNA and RNA sequencing reads and report.
 }

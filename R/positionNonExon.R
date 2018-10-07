@@ -1,6 +1,6 @@
 # positionNonExon.R
 
-#' \code{positionNonExon} output the positions of start alignment on references and number of nucleotides on reads that matches and unmatches to references.
+#' output the positions of start alignment on references and number of nucleotides on reads that matches and unmatches to references.
 #'
 #' \code{positionNonExon} uses \code{buildindex} and \code{align} to form an alignment file. From the file, output the position of non-exon sequences exist on the references sequences and the match/unmatch numbers in the reads itself.
 #'
@@ -10,8 +10,8 @@
 #' @return A data frame.
 #'
 #'
-#' @seealso \code{\link{buildindex}} Build an index for read mapping to perform.
-#' @seealso \code{\link{align}} Align DNA and RNA sequencing reads and report.
+#' @seealso \code{\link{Rsubread.buildindex}} Build an index for read mapping to perform.
+#' @seealso \code{\link{Rsubread.align}} Align DNA and RNA sequencing reads and report.
 #'
 #' @examples
 #' \dontrun{
@@ -24,6 +24,7 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
   if (! (file.exists(readFile) && file.exists(referenceFile))) {
     stop("No such file, please check the path to files")
   }
+
   # Form a BAM file for alignments by using the functions in Rsubread
   buildindex(basename="my_index", reference=referenceFile)
   align(index="my_index", readfile1=readFile, type="rna",
@@ -49,18 +50,28 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
   readUnmatch <- list() # Initial a list to store unmatch indexes
 
   for(i in seq_along(myTable[2, ])) {
+    # To split string by unmatch characters
+    readIndexes <- strsplit(myTable[[2, i]], "[A-L, N-Z]")[[1]]
+
+    # if there is no alignment to reference sequences, give readMatch and
+    # readUnmatch 0 and continue to next for loop.
+    # ref: Alexey F. (2018). StackOverflow.https://stackoverflow.com/questions
+    # /32076971/r-for-loop-skip-to-next-iteration-ifelse
+    if (is.na(readIndexes[1])) {
+      readMatch[i] <- c("0")
+      readUnmatch[i] <- c("0")
+      next
+    }
+
+    # if there is an alignment, extract match and unmatch length
     match <- c("")
     a <- 1L # a as index in match, since i has been used
     unmatch <- c("")
     b <- 1L # b as index in unmatch
-
-    # To split string by unmatch characters
-    readIndexes <- strsplit(myTable[[2, i]], "[A-L, N-Z]")[[1]]
-
     for (readIndex in readIndexes) {
       if (length(grep("M", readIndex)) > 0 ||
           length(grep("=", readIndex)) > 0) { # The split has "M" or "=", match
-        # Split the match from unmatch part if there is any
+        # Split the match from unmatch part if there is any e.g. 123M456
         indexes <- strsplit(readIndex, "M")[[1]]
 
         # The first splited item is match since match index is before "M"

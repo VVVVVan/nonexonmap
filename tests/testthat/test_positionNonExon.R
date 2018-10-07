@@ -8,7 +8,7 @@ readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexo
 transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
 intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
 
-load(system.file("extdata/testdata", "testAssets.Rdata", package = "nonexonmap"))
+load(system.file("extdata/testdata", "testDataFind.Rdata", package = "nonexonmap"))
 
 #
 # ==== END SETUP AND PREPARE ===================================================
@@ -31,7 +31,8 @@ test_that("a sample input prouces the expected output",  {
 #
 rm(testReadsToTranscripts)
 # To get all the file start with something konwn. Rime (2018). StackOverflow
-# https://stackoverflow.com/questions/36999611/using-list-files-in-r-to-find-files-that-start-with-a-specific-string
+# https://stackoverflow.com/questions/36999611/
+# using-list-files-in-r-to-find-files-that-start-with-a-specific-string
 file.remove(list.files("./", pattern = "^output.BAM"))
 file.remove(list.files("./", pattern = "^my_index"))
 

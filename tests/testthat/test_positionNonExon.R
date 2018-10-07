@@ -30,6 +30,10 @@ test_that("a sample input prouces the expected output",  {
 # stuff in tempdir().
 #
 rm(testReadsToTranscripts)
+file.remove(paste("./tests/testthat/",list.files("./tests/testthat/",
+  pattern = "^output.BAM"),sep=""))
+file.remove(paste("./tests/testthat/",list.files("./tests/testthat/",
+  pattern = "^my_index"),sep=""))
 # remove the output and my_index by file.remove()
 # ==== END  TEARDOWN AND RESTORE ===============================================
 

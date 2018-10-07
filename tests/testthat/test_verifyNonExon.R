@@ -29,11 +29,9 @@ test_that("a sample input prouces the expected output",  {
 # stuff in tempdir().
 #
 rm(testReadsToIntrons)
-file.remove(paste("./tests/testthat/",list.files("./tests/testthat/",
-  pattern = "^my_index"),sep=""))
-file.remove(paste("./tests/testthat/",list.files("./tests/testthat/",
-  pattern = "^verifyNonExonIntrons.BAM"),sep=""))
-# remove the output and my_index by file.remove()
+file.remove(list.files("./",pattern = "^verifyNonExonIntrons.BAM"))
+file.remove(list.files("./",pattern = "^my_index"))
+
 # ==== END  TEARDOWN AND RESTORE ===============================================
 
 # [END]

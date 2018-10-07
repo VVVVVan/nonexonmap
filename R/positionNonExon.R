@@ -30,14 +30,14 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
     output_file=outputFile, nthreads=20)
 
   # Store useful information from BAM file including read name (qname), read
-  # alignment information (cigar), transcipt name (rname), transcript position
+  # alignment information (cigar), reference name (rname), reference position
   # (pos) in a table for later use.
   output <- scanBam(outputFile)
   readName <- output[[1]][["qname"]]
   readAlign <- output[[1]][["cigar"]]
-  transName <- as.character(output[[1]][["rname"]])
-  transStart <- output[[1]][["pos"]]
-  myTable <- rbind(readName,readAlign,transName,transStart)
+  referenceName <- as.character(output[[1]][["rname"]])
+  referenceStart <- output[[1]][["pos"]]
+  myTable <- rbind(readName,readAlign,referenceName,referenceStart)
 
   # In BAM file, the read alignment(cigar) contains the match and unmatch
   # information. Match is formed in index + "M" or "=" (e.g. "446M").
@@ -95,9 +95,6 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
 
   myTabledf <- data.frame(myTable, stringsAsFactors = FALSE)
   names(myTabledf) <- myTable[1,]
-
-  transName <- as.character(output[[1]][["rname"]])
-  transPos <- output[[1]][["pos"]]
 
   readMatchdf <- data.frame(readMatch, stringsAsFactors = FALSE)
   names(readMatchdf) <- myTable[1,]

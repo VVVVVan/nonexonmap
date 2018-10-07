@@ -30,11 +30,11 @@ test_that("a sample input prouces the expected output",  {
 # stuff in tempdir().
 #
 rm(testReadsToTranscripts)
-file.remove(paste("./tests/testthat/",list.files("./tests/testthat/",
-  pattern = "^output.BAM"),sep=""))
-file.remove(paste("./tests/testthat/",list.files("./tests/testthat/",
-  pattern = "^my_index"),sep=""))
-# remove the output and my_index by file.remove()
+# To get all the file start with something konwn. Rime (2018). StackOverflow
+# https://stackoverflow.com/questions/36999611/using-list-files-in-r-to-find-files-that-start-with-a-specific-string
+file.remove(list.files("./", pattern = "^output.BAM"))
+file.remove(list.files("./", pattern = "^my_index"))
+
 # ==== END  TEARDOWN AND RESTORE ===============================================
 
 # [END]

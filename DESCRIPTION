@@ -5,7 +5,8 @@ Version: 0.1.0
 Author: Fan Shen
 Maintainer: Fan Shen <van.shen@mail.utoronto.ca>
 Description: nonexonmap plots the map of non-exon existed in reads in the 
-            final transcript sequences assembled by De Novo (Trinity). 
+            final transcript sequences assembled by De Novo (Trinity).
+            Rsubread and Rsamtools are used to align the sequences.
             The distribution is based on the number of reads that have 
             non-exon sequences overlap with the exon sequence. 
             Furthermore, a graph or chart should produced for visualization.

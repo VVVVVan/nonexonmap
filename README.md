@@ -24,6 +24,6 @@ Some useful keyboard shortcuts for package authoring:
 
 
 Load the package (outside of this project) with:
-    `devtools::install_github("<VVVVVan/nonexonmap")`
+    `devtools::install_github("VVVVVan/nonexonmap")`
 
 

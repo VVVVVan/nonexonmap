@@ -1,6 +1,6 @@
 library(testthat)
-library(nemapping)
+library(nonexonmap)
 
-test_check("nemapping")
+test_check("nonexonmap")
 
 # [END]

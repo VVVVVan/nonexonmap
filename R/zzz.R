@@ -4,8 +4,27 @@
 
 
 
-
 .onLoad <- function(libname, pkgname) {
+  # Install the Rsubread package to use some of its functions
+  if (! require(Rsubread, quietly=TRUE)) {
+    source("http://bioconductor.org/biocLite.R")
+    biocLite("Rsubread")
+    library(Rsubread)
+  }
+
+  if (! require(GenomeInfoDb, quietly=TRUE)) {
+    biocLite("GenomeInfoDb")
+    library(GenomeInfoDb)
+  }
+
+  if (! require(Rsamtools, quietly=TRUE)) {
+    biocLite("Rsamtools")
+    library(Rsamtools)
+  }
+
+  # Set up two function for the user.
+  findNonExon <- usePosition("find")
+  verifyNonExon <- usePosition("verify")
 
     # # Make list of package parameters and add to global options
     #
@@ -28,7 +47,7 @@
 .onAttach <- function(libname, pkgname) {
   # Startup message
   m <- character()
-  m[1] <- "\nWelcome to <your package name>.\n"
+  m[1] <- "\nWelcome to nonexonmap.\n"
 
   packageStartupMessage(paste(m, collapse=""))
 }

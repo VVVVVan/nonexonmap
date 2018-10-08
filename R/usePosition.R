@@ -16,6 +16,7 @@
 #' verifyNonExon <- usePosition("verify")
 #' dataFram2 <- verifyNonExon("reads.fasta", "introns.fasta")
 #' }
+#' @export
 usePosition <- function(purpose) {
   outputFiles <- c("findNonExonTranscripts.BAM", "verifyNonExonIntrons.BAM")
   names(outputFiles) <- c("find", "verify")

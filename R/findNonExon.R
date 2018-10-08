@@ -14,6 +14,7 @@
 #' \dontrun{
 #' dataFram <- findNonExon("reads.fasta", "transcripts.fasta")
 #' }
+#' @export
 findNonExon <- function(readFile, referenceFile) {
   return(data.frame())
 }

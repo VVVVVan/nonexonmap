@@ -10,8 +10,8 @@
 #' @return A data frame.
 #'
 #'
-#' @seealso \code{\link{Rsubread.buildindex}} Build an index for read mapping to perform.
-#' @seealso \code{\link{Rsubread.align}} Align DNA and RNA sequencing reads and report.
+#' @seealso \code{\link[Rsubread]{buildindex}} Build an index for read mapping to perform.
+#' @seealso \code{\link[Rsubread]{align}} Align DNA and RNA sequencing reads and report.
 #'
 #' @examples
 #' \dontrun{
@@ -19,6 +19,7 @@
 #' positionNonExon("reads.fasta", "intron.fasta", "outputReadsIntron.BAM")
 #' positionNonExon("exon.fasta", "wholeGene.fasta", "outputExonWholegene.BAM")
 #' }
+#' @export
 positionNonExon <- function(readFile, referenceFile, outputFile) {
   # Check if the file exist, if not stop and return a message.
   if (! (file.exists(readFile) && file.exists(referenceFile))) {
@@ -26,14 +27,18 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
   }
 
   # Form a BAM file for alignments by using the functions in Rsubread
-  buildindex(basename="my_index", reference=referenceFile)
-  align(index="my_index", readfile1=readFile, type="rna",
-    output_file=outputFile, nthreads=20)
+  # Make the output of Rsubread function invisible. Dan B, Roman T. (2018).
+  # StackOverFlow. https://stackoverflow.com/questions/34208564/how-to-hide-or
+  # -disable-in-function-printed-message-in-r/34208658
+  invisible(capture.output(Rsubread::buildindex(basename="my_index",
+    reference=referenceFile)))
+  invisible(capture.output(Rsubread::align(index="my_index",
+    readfile1=readFile, type="rna", output_file=outputFile, nthreads=20)))
 
   # Store useful information from BAM file including read name (qname), read
   # alignment information (cigar), reference name (rname), reference position
   # (pos) in a table for later use.
-  output <- scanBam(outputFile)
+  output <- Rsamtools::scanBam(outputFile)
   readName <- output[[1]][["qname"]]
   readAlign <- output[[1]][["cigar"]]
   referenceName <- as.character(output[[1]][["rname"]])
@@ -103,7 +108,7 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
     readMatch[[i]] <- match
     readUnmatch[[i]] <- unmatch
   }
-
+  # Create data frame from previous data.
   myTabledf <- data.frame(myTable, stringsAsFactors = FALSE)
   names(myTabledf) <- myTable[1,]
 

@@ -20,6 +20,7 @@
 #' verifydataFram <- verifyNonExon("reads.fasta", "introns.fasta")
 #' countNonExon(dataFram, verifydataFram)
 #' }
+#' @export
 countNonExon <- function(findDataFrame, verifyDataFrame = data.frame()) {
   # if missing the verify data frame, just analye the number of non-exon
   # sequences exist on reference sequences.

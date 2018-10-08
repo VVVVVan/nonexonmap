@@ -14,6 +14,7 @@
 #' dataFram <- findNonExon("reads.fasta", "transcripts.fasta")
 #' countPositionHelp(dataFram)
 #' }
+#' @export
 countPositionHelp <- function(informationdf) {
   if (! Reduce("&", c("referenceName", "referenceStart", "readUnmatch",
     "readMatch") %in% rownames(informationdf))) {

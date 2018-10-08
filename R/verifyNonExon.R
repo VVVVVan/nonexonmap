@@ -14,6 +14,7 @@
 #' \dontrun{
 #' dataFram <- verifyNonExon("reads.fasta", "introns.fasta")
 #' }
+#' @export
 verifyNonExon <- function(readFile, referenceFile) {
   return(data.frame())
 }

@@ -1,6 +1,7 @@
-#' NO-SUCH data.
+#' NOSUCH NON-EXON MAP data.
 #'
-#' Description of the data ....
+#' nonexonmap plots the map of non-exon sequences existed in reads in the final transcript sequences assembled by De Novo (Trinity). Since that the output file is just palin text, the plot and map of reads is an improvement. It analyzes the position of non-exon sequences on reference sequences. Furthermore, it checkes if the non-exon are introns and give the percentage of introns in the non-exon sequences. Rsubread and Rsamtools are used to align the sequences. A chart is produced for visualization.
+#'
 #'
 #' @format Example A MAF formatted file with 15 rows and 32 columns:
 #' \describe{
@@ -8,15 +9,17 @@
 #'   \item{exampleENTREZ_GENE_ID}{this is an ID}
 #'   ...
 #' }
-#' @source \url{https://example.com/docs/dummy_formats/}
+#' @source \url{https://github.com/VVVVVan/nonexonmap.git}
 #' @examples
 #' \dontrun{
-#' system.file("data", "NOSUCH.maf", package="rpt")
-#' fPath <- system.file("data", "NOSUCH.maf", package="rpt")
+#' system.file("extdata", "nonexonmap.maf", package="nonexonmap")
+#' fPath <- system.file("extdata", "nonexonmap.maf", package="nonexonmap")
 #' myExample <- read.delim(fPath, stringsAsFactors = FALSE)
+#'
 #' }
 #' @docType data
-#' @name NOSUCH.maf
+#' @name nonexonmap.maf
 NULL
+
 
 

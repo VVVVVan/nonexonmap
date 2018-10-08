@@ -27,7 +27,7 @@ positionNonExon("exon.fasta", "wholeGene.fasta", "outputExonWholegene.BAM")
 }
 }
 \seealso{
-\code{\link{Rsubread.buildindex}} Build an index for read mapping to perform.
+\code{\link[Rsubread]{buildindex}} Build an index for read mapping to perform.
 
-\code{\link{Rsubread.align}} Align DNA and RNA sequencing reads and report.
+\code{\link[Rsubread]{align}} Align DNA and RNA sequencing reads and report.
 }

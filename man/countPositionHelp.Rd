@@ -17,8 +17,10 @@ A list of lists with order of reference sequences name, aligned index on referen
 }
 \examples{
 \dontrun{
-dataFram <- findNonExon("reads.fasta", "transcripts.fasta")
-countPositionHelp(dataFram)
+readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
+transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
+dataFrame <- findNonExon(readsFile, transcriptsFile)
+countPositionHelp(dataFrame)
 }
 }
 \seealso{

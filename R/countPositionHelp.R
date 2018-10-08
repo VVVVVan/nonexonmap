@@ -11,8 +11,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' dataFram <- findNonExon("reads.fasta", "transcripts.fasta")
-#' countPositionHelp(dataFram)
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
+#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
+#' dataFrame <- findNonExon(readsFile, transcriptsFile)
+#' countPositionHelp(dataFrame)
 #' }
 #' @export
 countPositionHelp <- function(informationdf) {

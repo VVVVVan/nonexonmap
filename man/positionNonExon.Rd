@@ -21,9 +21,12 @@ A data frame.
 }
 \examples{
 \dontrun{
-positionNonExon("reads.fasta", "transcript.fasta", "outputReadsTranscript.BAM")
-positionNonExon("reads.fasta", "intron.fasta", "outputReadsIntron.BAM")
-positionNonExon("exon.fasta", "wholeGene.fasta", "outputExonWholegene.BAM")
+readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
+transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
+intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
+positionNonExon(readsFile, transcriptsFile, "outputReadsTranscript.BAM")
+positionNonExon(readsFile, intronsFile, "outputReadsIntron.BAM")
+positionNonExon(transcriptsFile, intronsFile, "outputExonWholegene.BAM")
 }
 }
 \seealso{

@@ -12,7 +12,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' dataFram <- findNonExon("reads.fasta", "transcripts.fasta")
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
+#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
+#' dataFrame <- findNonExon(readsFile, transcriptsFile)
 #' }
 #' @export
 findNonExon <- function(readFile, referenceFile) {

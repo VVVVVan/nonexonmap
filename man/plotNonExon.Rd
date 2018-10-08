@@ -17,10 +17,12 @@ A list of hist data that could be used for test.
 }
 \examples{
 \dontrun{
-dataFram <- findNonExon("reads.fasta", "transcripts.fasta")
-plotNonExon(countNonExon(dataFram))
+readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
+transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
+dataFrame <- findNonExon(readsFile, transcriptsFile)
+plotNonExon(countNonExon(dataFrame))
 verifydataFram <- verifyNonExon("reads.fasta", "introns.fasta")
-plotNonExon(countNonExon(dataFram, verifydataFram))
+plotNonExon(countNonExon(dataFrame, verifydataFram))
 }
 }
 \seealso{

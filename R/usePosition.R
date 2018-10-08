@@ -11,10 +11,13 @@
 #'
 #' @examples
 #' \dontrun{
-#' findNonExon <- usePosition("find")
-#' dataFram1 <- findNonExon("reads.fasta", "transcript.fasta")
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
+#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
+#' dataFrame1 <- findNonExon(readsFile, transcriptsFile)
 #' verifyNonExon <- usePosition("verify")
-#' dataFram2 <- verifyNonExon("reads.fasta", "introns.fasta")
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
+#' intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
+#' dataFrame2 <- verifyNonExon(readsFile, intronsFile)
 #' }
 #' @export
 usePosition <- function(purpose) {

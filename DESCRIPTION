@@ -20,4 +20,7 @@ Suggests:
 RoxygenNote: 6.1.0
 Imports: Rsubread,
     GenomeInfoDb,
-    Rsamtools
+    Rsamtools,
+    utils,
+    graphics,
+    grDevices

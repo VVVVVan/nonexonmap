@@ -11,32 +11,35 @@
 #'
 #' @examples
 #' \dontrun{
-#' dataFram <- findNonExon("reads.fasta", "transcripts.fasta")
-#' plotNonExon(countNonExon(dataFram))
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
+#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
+#' dataFrame <- findNonExon(readsFile, transcriptsFile)
+#' plotNonExon(countNonExon(dataFrame))
 #' verifydataFram <- verifyNonExon("reads.fasta", "introns.fasta")
-#' plotNonExon(countNonExon(dataFram, verifydataFram))
+#' plotNonExon(countNonExon(dataFrame, verifydataFram))
 #' }
 #' @export
 plotNonExon <- function(countLists) {
   # Sepearte the window if there are more than one reference genes
   # Need more improvement for this, what if the number is very large
   if (length(countLists[[1]]) > 1) {
-    par(mfrow=c(as.integer((length(countLists[[1]]) + 1) / 2 ),2))
+    graphics::par(mfrow=c(as.integer((length(countLists[[1]]) + 1) / 2 ),2))
   }
   infos <- list()
   for (i in seq_along(countLists[[1]])) {
     x <- as.numeric(countLists[[2]][[i]]) # position of introns
     y <- as.numeric(countLists[[3]][[i]])# number of introns
-    infos[[i]] <- hist(x, breaks=10)
+    infos[[i]] <- graphics::hist(x, breaks=10)
     if (length(countLists) == 4) {
       z <- as.numeric(countLists[[4]][[i]])
-      par(mfrow=c(2, 4))
+      graphics::par(mfrow=c(2, 4))
       for (j in seq_along(z)) {
-        pie(c(abs(1-z[j]),z[j]), col=c(8,2),labels=c("non-exon", "introns"))
+        graphics::pie(c(abs(1-z[j]),z[j]), col=c(8,2),labels=c("non-exon",
+          "introns"))
       }
-      dev.off()
+      grDevices::dev.off()
     }
-    plot(x,y)
+    graphics::plot(x,y)
   }
   return(infos)
 }

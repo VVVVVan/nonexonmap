@@ -15,9 +15,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' positionNonExon("reads.fasta", "transcript.fasta", "outputReadsTranscript.BAM")
-#' positionNonExon("reads.fasta", "intron.fasta", "outputReadsIntron.BAM")
-#' positionNonExon("exon.fasta", "wholeGene.fasta", "outputExonWholegene.BAM")
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
+#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
+#' intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
+#' positionNonExon(readsFile, transcriptsFile, "outputReadsTranscript.BAM")
+#' positionNonExon(readsFile, intronsFile, "outputReadsIntron.BAM")
+#' positionNonExon(transcriptsFile, intronsFile, "outputExonWholegene.BAM")
 #' }
 #' @export
 positionNonExon <- function(readFile, referenceFile, outputFile) {
@@ -30,9 +33,9 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
   # Make the output of Rsubread function invisible. Dan B, Roman T. (2018).
   # StackOverFlow. https://stackoverflow.com/questions/34208564/how-to-hide-or
   # -disable-in-function-printed-message-in-r/34208658
-  invisible(capture.output(Rsubread::buildindex(basename="my_index",
+  invisible(utils::capture.output(Rsubread::buildindex(basename="my_index",
     reference=referenceFile)))
-  invisible(capture.output(Rsubread::align(index="my_index",
+  invisible(utils::capture.output(Rsubread::align(index="my_index",
     readfile1=readFile, type="rna", output_file=outputFile, nthreads=20)))
 
   # Store useful information from BAM file including read name (qname), read

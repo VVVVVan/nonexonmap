@@ -26,10 +26,14 @@ Details.
 
 \examples{
 \dontrun{
-dataFram <- findNonExon("reads.fasta", "transcripts.fasta")
-countNonExon(dataFram)
-verifydataFram <- verifyNonExon("reads.fasta", "introns.fasta")
-countNonExon(dataFram, verifydataFram)
+readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
+transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
+finddataframe <- findNonExon(readsFile, transcriptsFile)
+countNonExon(finddataframe)
+readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
+intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
+verifydataframe <- verifyNonExon(readsFile, intronsFile)
+countNonExon(finddataframe, verifydataframe)
 }
 }
 \seealso{

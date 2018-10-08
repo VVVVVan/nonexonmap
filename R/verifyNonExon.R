@@ -12,7 +12,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' dataFram <- verifyNonExon("reads.fasta", "introns.fasta")
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
+#' intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
+#' dataFrame <- verifyNonExon(readsFile, intronsFile)
 #' }
 #' @export
 verifyNonExon <- function(readFile, referenceFile) {

@@ -2,8 +2,8 @@
 
 export(countNonExon)
 export(countPositionHelp)
+export(exNonexonmap)
 export(findNonExon)
-export(lseq)
 export(plotNonExon)
 export(positionNonExon)
 export(usePosition)

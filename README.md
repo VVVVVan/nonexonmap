@@ -1,15 +1,8 @@
 # nonexonmap
 
-## R Package Template
+## Description
 
-This is a template RStudio project for R packages, loosely based on Hadley Wickham's
-
-  [R Packages](http://r-pkgs.had.co.nz/) <http://r-pkgs.had.co.nz/>
-
------------------------------------------------
-
-Note: you can't push empty directories to your repository. Make sure youu keep
-at least one file in every directory that you want to keep during development.
+This package plots the position and numbers of non-exon sequences existed in reads in the final transcript sequences assembled by De Novo (fasta file). Furthermore, it can verify if these non-exon sequences are introns.
  
 -----------------------------------------------
 

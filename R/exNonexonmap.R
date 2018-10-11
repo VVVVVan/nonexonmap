@@ -26,8 +26,8 @@ exNonexonmap <- function() {
   # (Sorry for the fact that non-exon consistion is only available in function
   # and is replaced by the position plot when grDevices::dev.off() is called in
   # plotNonExon.R, need to combine those in further improvements)
-  # verifydataFram <- verifyNonExon(readsFile, intronsFile)
-  # plotNonExon(countNonExon(dataFrame, verifydataFram))
+  verifydataFram <- verifyNonExon(readsFile, intronsFile)
+  plotNonExon(countNonExon(dataFrame, verifydataFram))
 
   # Delete the files
   file.remove(list.files("./", pattern = "^output.BAM"))

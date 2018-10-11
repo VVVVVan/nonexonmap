@@ -2,16 +2,16 @@
 
 ## Description
 
-This package plots the position and numbers of non-exon sequences existed in reads in the final transcript sequences assembled by De Novo (fasta file). Furthermore, it can verify if these non-exon sequences are introns.
+This package plots the position and numbers of non-exon sequences existed in reads against the final transcript sequences assembled by De Novo (fasta file). Furthermore, it can verify if these non-exon sequences are introns.
 
 ## Instruction
 
-The \code{exNonexonmap.R} is an example of running the functions in my package. 
+The `exNonexonmap.R` is an example of running the functions in my package. 
 
 In general, there are four functions that could be used by users:
-\code{findNonExon.R} will find the location of non-exon sequences on reference sequences and matches & unmatches in reads.
-\code{verifyNonExon.R} will verify if the non-exon sequences are introns.
-\code{countNonExon.R} is going to count the number of non-exon exists and form data for \code{plotNonExon.R}.
+`findNonExon.R` will find the location of non-exon sequences on reference sequences and matches & unmatches in reads.
+`verifyNonExon.R` will verify if the non-exon sequences are introns.
+`countNonExon.R` is going to count the number of non-exon exists and form data for `plotNonExon.R`.
 
 ## Example outcome.
 ```R

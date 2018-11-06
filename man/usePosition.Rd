@@ -2,7 +2,7 @@
 % Please edit documentation in R/usePosition.R
 \name{usePosition}
 \alias{usePosition}
-\title{\code{usePosition} a closure of function \code{positionNonExon.R}.}
+\title{A closure for function \code{positionNonExon}.}
 \usage{
 usePosition(purpose)
 }
@@ -19,13 +19,7 @@ a function.
 \dontrun{
 readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
 transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
+findNonExon <- usePosition("find")
 dataFrame1 <- findNonExon(readsFile, transcriptsFile)
-verifyNonExon <- usePosition("verify")
-readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
-intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
-dataFrame2 <- verifyNonExon(readsFile, intronsFile)
 }
-}
-\seealso{
-\code{\link{positionNonExon}} find position of matches and unmatches.
 }

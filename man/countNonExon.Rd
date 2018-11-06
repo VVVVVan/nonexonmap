@@ -2,7 +2,7 @@
 % Please edit documentation in R/countNonExon.R
 \name{countNonExon}
 \alias{countNonExon}
-\title{count the numbers, the position, percentage of introns for non-exon sequences on reference sequences.}
+\title{Count the numbers, the position, percentage of introns for non-exon sequences on reference sequences.}
 \usage{
 countNonExon(findDataFrame, verifyDataFrame = data.frame())
 }
@@ -17,25 +17,15 @@ A list of list with reference name, alignment position, alignment counts and per
 \description{
 \code{countNonExon} is a function that is used to count the number of non-exon sequences on specific position of reference sequences and output the percentage of introns in those non-exon sequences.
 }
-\details{
-Details.
-}
-\section{usage}{
- countNonExon(findDataFrame).
-}
-
 \examples{
 \dontrun{
 readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
 transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
+intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
+
 finddataframe <- findNonExon(readsFile, transcriptsFile)
 countNonExon(finddataframe)
-readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
-intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
 verifydataframe <- verifyNonExon(readsFile, intronsFile)
 countNonExon(finddataframe, verifydataframe)
 }
-}
-\seealso{
-\code{\link{findNonExon}}, \code{\link{verifyNonExon}} compute the input for this function.
 }

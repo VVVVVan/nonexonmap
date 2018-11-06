@@ -2,22 +2,22 @@
 % Please edit documentation in R/positionNonExon.R
 \name{positionNonExon}
 \alias{positionNonExon}
-\title{output the positions of start alignment on references and number of nucleotides on reads that matches and unmatches to references.}
+\title{Output the positions of reads on reference sequences with number of match/unmatch.}
 \usage{
-positionNonExon(readFile, referenceFile, outputFile)
+positionNonExon(readsFile, referencesFile, outputsFile)
 }
 \arguments{
-\item{readFile}{The file that store the read sequences, a string.}
+\item{readsFile}{The file that store the read sequences, a string.}
 
-\item{referenceFile}{The file that store the reference sequences, a string.}
+\item{referencesFile}{The file that store the reference sequences, a string.}
 
-\item{outputFile}{The name of output file in BAM format, a string.}
+\item{outputsFile}{The name of output file in BAM format, a string.}
 }
 \value{
-A data frame.
+A data frame contains the name of read, name of reference seqeunces, match/unmatch position and reference start position.
 }
 \description{
-\code{positionNonExon} uses \code{buildindex} and \code{align} to form an alignment file. From the file, output the position of non-exon sequences exist on the references sequences and the match/unmatch numbers in the reads itself.
+\code{positionNonExon} uses \code{\link[Rsubread]{buildindex}} and \\code{\link[Rsubread]{align}} to form an alignment file. From the file, output the position of non-exon sequences exist on the references sequences and the match/unmatch numbers in the reads itself.
 }
 \examples{
 \dontrun{
@@ -33,4 +33,6 @@ positionNonExon(transcriptsFile, intronsFile, "outputExonWholegene.BAM")
 \code{\link[Rsubread]{buildindex}} Build an index for read mapping to perform.
 
 \code{\link[Rsubread]{align}} Align DNA and RNA sequencing reads and report.
+
+\code{\link[Rsamtools]{scanBam}} Read the Bam file.
 }

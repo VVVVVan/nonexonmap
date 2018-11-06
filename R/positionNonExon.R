@@ -1,17 +1,18 @@
 # positionNonExon.R
 
-#' output the positions of start alignment on references and number of nucleotides on reads that matches and unmatches to references.
+#' Output the positions of reads on reference sequences with number of match/unmatch.
 #'
-#' \code{positionNonExon} uses \code{buildindex} and \code{align} to form an alignment file. From the file, output the position of non-exon sequences exist on the references sequences and the match/unmatch numbers in the reads itself.
 #'
-#' @param readFile The file that store the read sequences, a string.
-#' @param referenceFile The file that store the reference sequences, a string.
-#' @param outputFile The name of output file in BAM format, a string.
-#' @return A data frame.
+#' \code{positionNonExon} uses \code{\link[Rsubread]{buildindex}} and \\code{\link[Rsubread]{align}} to form an alignment file. From the file, output the position of non-exon sequences exist on the references sequences and the match/unmatch numbers in the reads itself.
 #'
+#' @param readsFile The file that store the read sequences, a string.
+#' @param referencesFile The file that store the reference sequences, a string.
+#' @param outputsFile The name of output file in BAM format, a string.
+#' @return A data frame contains the name of read, name of reference seqeunces, match/unmatch position and reference start position.
 #'
 #' @seealso \code{\link[Rsubread]{buildindex}} Build an index for read mapping to perform.
 #' @seealso \code{\link[Rsubread]{align}} Align DNA and RNA sequencing reads and report.
+#' @seealso \code{\link[Rsamtools]{scanBam}} Read the Bam file.
 #'
 #' @examples
 #' \dontrun{
@@ -22,10 +23,9 @@
 #' positionNonExon(readsFile, intronsFile, "outputReadsIntron.BAM")
 #' positionNonExon(transcriptsFile, intronsFile, "outputExonWholegene.BAM")
 #' }
-#' @export
-positionNonExon <- function(readFile, referenceFile, outputFile) {
+positionNonExon <- function(readsFile, referencesFile, outputsFile) {
   # Check if the file exist, if not stop and return a message.
-  if (! (file.exists(readFile) && file.exists(referenceFile))) {
+  if (! (file.exists(readsFile) && file.exists(referencesFile))) {
     stop("No such file, please check the path to files")
   }
 
@@ -34,26 +34,25 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
   # StackOverFlow. https://stackoverflow.com/questions/34208564/how-to-hide-or
   # -disable-in-function-printed-message-in-r/34208658
   invisible(utils::capture.output(Rsubread::buildindex(basename="my_index",
-    reference=referenceFile)))
+    reference=referencesFile)))
   invisible(utils::capture.output(Rsubread::align(index="my_index",
-    readfile1=readFile, type="rna", output_file=outputFile, nthreads=20)))
+    readfile1=readsFile, type="rna", output_file=outputsFile, nthreads=20)))
 
-  # Store useful information from BAM file including read name (qname), read
-  # alignment information (cigar), reference name (rname), reference position
-  # (pos) in a table for later use.
-  output <- Rsamtools::scanBam(outputFile)
-  readName <- output[[1]][["qname"]]
-  readAlign <- output[[1]][["cigar"]]
-  referenceName <- as.character(output[[1]][["rname"]])
-  referenceStart <- output[[1]][["pos"]]
+  # Store useful information from BAM file for later use.
+  output <- Rsamtools::scanBam(outputsFile)
+  readName <- output[[1]][["qname"]] # qname is read name
+  readAlign <- output[[1]][["cigar"]] # cigar is read alignment information
+  referenceName <- as.character(output[[1]][["rname"]]) # ranme is ref name
+  referenceStart <- output[[1]][["pos"]] # pos is reference start position
   myTable <- rbind(readName,readAlign,referenceName,referenceStart)
 
   # In BAM file, the read alignment(cigar) contains the match and unmatch
   # information. Match is formed in index + "M" or "=" (e.g. "446M").
   # Unmatch is formed in index + some other character (e.g. "336S").
-  # Match and unmatch are combined together as one string. This for loop is
-  # used to extract the index of matches and unmatches.
+  # Match and unmatch are combined together as one string.
   # ref: https://samtools.github.io/hts-specs/SAMv1.pdf
+
+  # Extract the index of matches and unmatches.
   readMatch <- list() # Initial a list to store match indexes
   readUnmatch <- list() # Initial a list to store unmatch indexes
 
@@ -61,8 +60,8 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
     # To split string by unmatch characters
     readIndexes <- strsplit(myTable[[2, i]], "[A-L, N-Z]")[[1]]
 
-    # if there is no alignment to reference sequences, give readMatch and
-    # readUnmatch 0 and continue to next for loop.
+    # No alignment to reference sequences, assign readMatch and readUnmatch to
+    # "0" and continue to next for loop.
     # ref: Alexey F. (2018). StackOverflow.https://stackoverflow.com/questions
     # /32076971/r-for-loop-skip-to-next-iteration-ifelse
     if (is.na(readIndexes[1])) {
@@ -71,11 +70,9 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
       next
     }
 
-    # if there is an alignment, extract match and unmatch length
-    match <- c("")
-    a <- 1L # a as index in match, since i has been used
-    unmatch <- c("")
-    b <- 1L # b as index in unmatch
+    # Alignment exist, extract match and unmatch length.
+    match <- unmatch <- c("")
+    a <- b <- 1L # a as index in match, b as index in unmatch
     for (readIndex in readIndexes) {
       if (length(grep("M", readIndex)) > 0 ||
           length(grep("=", readIndex)) > 0) { # The split has "M" or "=", match
@@ -83,16 +80,17 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
         indexes <- strsplit(readIndex, "M")[[1]]
 
         # The first splited item is match since match index is before "M"
-        if (a > 1) { # If there are > 1 match, need add "," to separate indexes
+        if (a > 1) {
           match <- paste(match, ",")
         }
-        match <- paste(match, as.numeric(indexes[1])) # Store the match index
+        match <- paste(match, as.numeric(indexes[1]))
         a <- a + 1
 
         # If there are more than one items in indexes, there exists unmatch
         if (readIndexes[1] == readIndex) {
           unmatch <- c(0)
         }
+
         if (length(indexes) == 1) {
           unmatch <- paste(unmatch, ",", 0)
         } else {
@@ -111,6 +109,7 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
     readMatch[[i]] <- match
     readUnmatch[[i]] <- unmatch
   }
+
   # Create data frame from previous data.
   myTabledf <- data.frame(myTable, stringsAsFactors = FALSE)
   names(myTabledf) <- myTable[1,]
@@ -122,10 +121,10 @@ positionNonExon <- function(readFile, referenceFile, outputFile) {
   readUnmatchdf <- data.frame(readUnmatch, stringsAsFactors = FALSE)
   names(readUnmatchdf) <- myTable[1,]
   rownames(readUnmatchdf) <- "readUnmatch"
+
   # To make the final table sorted.
-  finaldf <- rbind(myTabledf, readMatchdf, readUnmatchdf)[-2,]
+  sortdf <- finaldf <- rbind(myTabledf, readMatchdf, readUnmatchdf)[-2,]
   sortedNames <- sort(colnames(finaldf))
-  sortdf <- finaldf
   for (i in seq_along(sortedNames)) {
     sortdf[,i] <- finaldf[,sortedNames[i]]
   }

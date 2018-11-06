@@ -2,20 +2,20 @@
 % Please edit documentation in R/verifyNonExon.R
 \name{verifyNonExon}
 \alias{verifyNonExon}
-\title{\code{verifyNonExon} is applied to verify if the non-exon sequences are introns.}
+\title{Applied to verify if the non-exon sequences are introns.}
 \usage{
-verifyNonExon(readFile, referenceFile)
+verifyNonExon(readsFile, referenceFile)
 }
 \arguments{
-\item{readFile}{the reads file that is used as query, a string.}
+\item{readsFile}{The file that store the read sequences, a string.}
 
-\item{referenceFile}{the file usually introns that is used as reference, a string.}
+\item{referenceFile}{The file that store the reference sequences usually introns, a string.}
 }
 \value{
-a data frame.
+A data frame contains the name of read, name of reference seqeunces, match/unmatch position and reference start position.
 }
 \description{
-\code{verifyNonExon} use \code{positionNonExon} to align the reads with introns and output a BAM file named "verifyNonExonIntrons.BAM". The return value is a data frame with all position of alignment and number of matches and unmatches. \code{verifyNonExon} can be called by user directly.
+\code{verifyNonExon} use \code{positionNonExon} to align the reads with introns and output a BAM file named "verifyNonExonIntrons.BAM". The return value is a data frame with all position of alignment and number of matches and unmatches.
 }
 \examples{
 \dontrun{
@@ -23,7 +23,4 @@ readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexo
 intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
 dataFrame <- verifyNonExon(readsFile, intronsFile)
 }
-}
-\seealso{
-\code{\link{usePosition}} the closure of \code{\link{positionNonExon}}
 }

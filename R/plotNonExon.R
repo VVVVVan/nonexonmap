@@ -7,8 +7,6 @@
 #' @param countLists a list of list with the non exon position and numbers to plot. Usually get from \code{countNonExon}.
 #' @return A list of hist data that could be used for test.
 #'
-#' @seealso \code{\link{countNonExon}} give the input of the function.
-#'
 #' @examples
 #' \dontrun{
 #' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
@@ -18,7 +16,6 @@
 #' verifydataFram <- verifyNonExon("reads.fasta", "introns.fasta")
 #' plotNonExon(countNonExon(dataFrame, verifydataFram))
 #' }
-#' @export
 plotNonExon <- function(countLists) {
   # Sepearte the window if there are more than one reference genes
   # Need more improvement for this, what if the number is very large

@@ -9,7 +9,7 @@
   findNonExon <- usePosition("find")
   verifyNonExon <- usePosition("verify")
 
-    invisible()
+  invisible()
 }
 
 
@@ -17,9 +17,8 @@
   # Startup message
   m <- character()
   m[1] <- "\nWelcome to nonexonmap.\n"
-  m[2] <- "\nThere are four function that users can use.\n"
-  m[3] <- "\nThe function names are findNonExon, verifyNonExon, countNonExon, and plotNonExon.\n"
-  m[4] <- "\nThere are also some help functions like positionNonExon, usePosition, countPositionHelp.\n"
+  m[2] <- "\nThere are three function that users can use.\n"
+  m[3] <- "\nThe function names are findNonExon, verifyNonExon, and mainNonexonmap.\n"
 
   packageStartupMessage(paste(m, collapse=""))
 }

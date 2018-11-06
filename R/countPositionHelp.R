@@ -1,13 +1,11 @@
 # countPositionHelp.R
 
-#' help \code{countNonExon} to count the numbers and the position of non-exon sequences on reference sequences.
+#' Help \code{countNonExon} to count the numbers of non-exon sequences on reference sequences.
 #'
-#' \code{countPositionHelp} is a help function for \code{countNonExon}. It take the data frame and analyze the number of non-exon sequences on a specific place in references.
+#' \code{countPositionHelp} is a help function for \code{countNonExon}. It takes the data frame and analyze the number of non-exon sequences on a specific place in reference sequences.
 #'
-#' @param informationdf the data frame that store the information for funciton to analyze. Should compute from \code{findNonExon}, \code{verifyNonExon} or relateive functions.
+#' @param informationdf the data frame that store the reads and reference information for funciton to analyze. Should compute from \code{findNonExon}, \code{verifyNonExon} or relateive functions.
 #' @return A list of lists with order of reference sequences name, aligned index on reference sequence, number of aligned reads on the spot.
-#'
-#' @seealso \code{\link{findNonExon}}, \code{\link{verifyNonExon}} compute the input for this function.
 #'
 #' @examples
 #' \dontrun{
@@ -16,7 +14,6 @@
 #' dataFrame <- findNonExon(readsFile, transcriptsFile)
 #' countPositionHelp(dataFrame)
 #' }
-#' @export
 countPositionHelp <- function(informationdf) {
   if (! Reduce("&", c("referenceName", "referenceStart", "readUnmatch",
     "readMatch") %in% rownames(informationdf))) {
@@ -28,13 +25,11 @@ countPositionHelp <- function(informationdf) {
     function(x){unique(x)})$referenceName)
 
   # initial a list to store aligned indexes and number for each reference
-  alignedIndexes <- list()
-  numberAligneds <- list()
+  alignedIndexes <- numberAligneds <- list()
   for (transcript in transcripts) {
-    alignedIndex <- c()
-    numberAligned <- c()
+    alignedIndex <- numberAligned <- c()
     j <- 1L # a index for vectors above to store infomation
-    for (i in seq_along(names(informationdf))) { # go through the data frame
+    for (i in seq_along(names(informationdf))) {
       if(informationdf["referenceName", i] == transcripts) {
         # Take unmatches, matches, reference start back to numbers
         unmatches <- as.integer(strsplit(informationdf["readUnmatch", i],

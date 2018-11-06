@@ -2,20 +2,20 @@
 % Please edit documentation in R/findNonExon.R
 \name{findNonExon}
 \alias{findNonExon}
-\title{\code{findNonExon} is applied to find the non-exon sequences in reads.}
+\title{Applied to find the non-exon sequences in reads.}
 \usage{
-findNonExon(readFile, referenceFile)
+findNonExon(readsFile, referencesFile)
 }
 \arguments{
-\item{readFile}{the reads file that is used as query, a string.}
+\item{readsFile}{The file that store the read sequences, a string.}
 
-\item{referenceFile}{the file usually transcripts that is used as reference, a string.}
+\item{referencesFile}{The file that store the reference sequences usually transcripts, a string.}
 }
 \value{
-a data frame.
+A data frame contains the name of read, name of reference seqeunces, match/unmatch position and reference start position.
 }
 \description{
-\code{findNonExon} use \code{positionNonExon} to align the reads with transcripts and output a BAM file named "findNonExonTranscripts.BAM". The return value is a data frame with all position of alignment and number of matches and unmatches. \code{findNonExon} can be called by user directly.
+\code{findNonExon} use \code{positionNonExon} to align the reads with reference sequences and output a BAM file named "findNonExonTranscripts.BAM". The return value is a data frame with all position of alignment and number of matches and unmatches.
 }
 \examples{
 \dontrun{
@@ -23,7 +23,4 @@ readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexo
 transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
 dataFrame <- findNonExon(readsFile, transcriptsFile)
 }
-}
-\seealso{
-\code{\link{usePosition}} the closure of \code{\link{positionNonExon}}
 }

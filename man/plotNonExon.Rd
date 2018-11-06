@@ -25,6 +25,3 @@ verifydataFram <- verifyNonExon("reads.fasta", "introns.fasta")
 plotNonExon(countNonExon(dataFrame, verifydataFram))
 }
 }
-\seealso{
-\code{\link{countNonExon}} give the input of the function.
-}

@@ -15,7 +15,7 @@ load(system.file("extdata/testdata", "testDataFind.Rdata", package = "nonexonmap
 
 test_that("corrupt input generates errors",  {
   expect_error(positionNonExon(readsFile, transcriptsFile),
-    "argument \"outputFile\" is missing, with no default")
+    "argument \"outputsFile\" is missing, with no default")
   expect_error(positionNonExon("reads.fasta", transcriptsFile,"output.BAM"),
     "No such file, please check the path to files")
 })

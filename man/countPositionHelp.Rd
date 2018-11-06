@@ -2,18 +2,18 @@
 % Please edit documentation in R/countPositionHelp.R
 \name{countPositionHelp}
 \alias{countPositionHelp}
-\title{help \code{countNonExon} to count the numbers and the position of non-exon sequences on reference sequences.}
+\title{Help \code{countNonExon} to count the numbers of non-exon sequences on reference sequences.}
 \usage{
 countPositionHelp(informationdf)
 }
 \arguments{
-\item{informationdf}{the data frame that store the information for funciton to analyze. Should compute from \code{findNonExon}, \code{verifyNonExon} or relateive functions.}
+\item{informationdf}{the data frame that store the reads and reference information for funciton to analyze. Should compute from \code{findNonExon}, \code{verifyNonExon} or relateive functions.}
 }
 \value{
 A list of lists with order of reference sequences name, aligned index on reference sequence, number of aligned reads on the spot.
 }
 \description{
-\code{countPositionHelp} is a help function for \code{countNonExon}. It take the data frame and analyze the number of non-exon sequences on a specific place in references.
+\code{countPositionHelp} is a help function for \code{countNonExon}. It takes the data frame and analyze the number of non-exon sequences on a specific place in reference sequences.
 }
 \examples{
 \dontrun{
@@ -22,7 +22,4 @@ transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", packag
 dataFrame <- findNonExon(readsFile, transcriptsFile)
 countPositionHelp(dataFrame)
 }
-}
-\seealso{
-\code{\link{findNonExon}}, \code{\link{verifyNonExon}} compute the input for this function.
 }

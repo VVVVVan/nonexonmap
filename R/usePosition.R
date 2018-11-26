@@ -14,6 +14,7 @@
 #' findNonExon <- usePosition("find")
 #' dataFrame1 <- findNonExon(readsFile, transcriptsFile)
 #' }
+#' @export
 usePosition <- function(purpose) {
   outputFiles <- c("findNonExonTranscripts.BAM", "verifyNonExonIntrons.BAM")
   names(outputFiles) <- c("find", "verify")

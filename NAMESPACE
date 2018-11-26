@@ -2,4 +2,5 @@
 
 export(findNonExon)
 export(mainNonexonmap)
+export(usePosition)
 export(verifyNonExon)

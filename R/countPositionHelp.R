@@ -53,14 +53,14 @@ countPositionHelp <- function(informationdf) {
           }
 
           if (unmatches[iunmatch] != 0) {
-            if (reference %in% alignedIndex) {
-              index <- match(c(reference), alignedIndex)
-              numberAligned[index] <- numberAligned[index] + 1
-            } else {
+           # if (reference %in% alignedIndex) {
+            #  index <- match(c(reference), alignedIndex)
+             # numberAligned[index] <- numberAligned[index] + 1
+            #} else {
               alignedIndex[j] <- reference
               numberAligned[j] <- 1
               j <- j + 1
-            }
+            #}
           }
         }
       }

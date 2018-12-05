@@ -17,8 +17,8 @@
   # Startup message
   m <- character()
   m[1] <- "\nWelcome to nonexonmap.\n"
-  m[2] <- "\nThere are three function that users can use.\n"
-  m[3] <- "\nThe function names are findNonExon, verifyNonExon, and mainNonexonmap.\n"
+  m[2] <- "\nThere is one function that users can use.\n"
+  m[3] <- "\nThe function name is mainNonexonmap.\n"
 
   packageStartupMessage(paste(m, collapse=""))
 }

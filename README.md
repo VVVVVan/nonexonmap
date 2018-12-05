@@ -2,24 +2,28 @@
 
 ## Description
 
-This package plots the position and numbers of non-exon sequences existed in reads against the final transcript sequences assembled by De Novo (fasta file). Furthermore, it can verify if these non-exon sequences are introns.
+This package plots the position and numbers of non-exon sequences existed in reads file against the final transcript sequence assembled by De Novo (fasta file). Since that the output file is just plain text, the map of reads is an improvement. Furthermore, it can verify if these non-exon sequences are introns and gives the average percentage of introns at each position with an introns file. Shiny app would be created to visulize the plot.
 
 ## Instruction
 
-The `exNonexonmap.R` is an example of running the functions in my package. 
+The `mainNonExonMap` is an main function to run the functions in my package. The inputs could be reads file and corresponding transcripts file. Corresponding introns file can also be inputs if you want to verify the non-exon sequences. The output of the function is a data frame with counted number of non-exon at each position on reference sequence and its intron percentage if there is introns file as input. 
 
-In general, there are four functions that could be used by users:
-`findNonExon.R` will find the location of non-exon sequences on reference sequences and matches & unmatches in reads.
-`verifyNonExon.R` will verify if the non-exon sequences are introns.
-`countNonExon.R` is going to count the number of non-exon exists and form data for `plotNonExon.R`.
+The `runNonExonApp` is a function to run the shiny app and plot the data frame created from `mainNonExonMap`.
+
+There are two functions that could be used by users:
+`findNonExon` will find the location of non-exon sequences on reference sequences and matches & unmatches in reads.
+`verifyNonExon` will verify if the non-exon sequences are introns.
+
+The `countNonExon` and `countPositionHelp` functions are not exported since they are helper functions for `mainNonExonMap`.
 
 ## Example outcome.
 ```R
-exNonexonmap()
+runNonExonApp()
 ``` 
 The example outcome is like:
-![](Rplots.jpg)
+![](./inst/extdata/testdata/example_output.png)
 
+You can also change the input files to make different plots, the example input files are listed in ./inst/extdata/testdata.
 -----------------------------------------------
 
 Some useful keyboard shortcuts for package authoring:
@@ -35,4 +39,6 @@ Some useful keyboard shortcuts for package authoring:
 Load the package (outside of this project) with:
     `devtools::install_github("VVVVVan/nonexonmap")`
 
+Available Vignette:
+    `vignette(package = "nonexonmap")`
 

@@ -92,7 +92,14 @@ countNonExon <- function(findDataFrame, verifyDataFrame = data.frame()) {
               }
               flag <- !flag
             }
-            store[j] <- as.numeric((numberIntron)/ nonExonUnmatches[index])
+
+            ratio <- as.numeric((numberIntron)/ nonExonUnmatches[index])
+            if (ratio > 1) {
+              store[j] <- 1
+            } else {
+              store[j] <- ratio
+            }
+
           }
           j <- j + 1
         }

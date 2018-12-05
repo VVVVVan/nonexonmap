@@ -4,23 +4,27 @@ Title: R Package Template
 Version: 0.1.0
 Author: Fan Shen
 Maintainer: Fan Shen <van.shen@mail.utoronto.ca>
-Description: nonexonmap plots the map of non-exon sequences existed in reads in
-            the final transcript sequences assembled by De Novo (Trinity). 
-            Since that the output file is just palin text, the plot and map of
-            reads is an improvement. It analyzes the position of non-exon 
-            sequences on reference sequences. Furthermore, it checkes if the
-            non-exon are introns and give the percentage of introns in the 
-            non-exon sequences. Rsubread and Rsamtools are used to align the
-            sequences. A chart is produced for visualization.
+Description: nonexonmap maps the non-exon sequences existed in reads to
+            the final transcript sequences assembled from reads by De Novo (Trinity). 
+            Since that the output file is just plain text, the map of reads
+            is an improvement. It clearly shows the position of non-exon sequences
+            on reference sequence. Furthermore, it verifies if the non-exon 
+            sequences are introns and gives the percentage of introns in the 
+            non-exon sequences. A ggplot is produced to Shiny app for visualization.
+            Rsubread and Rsamtools are used to align the sequences.
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests:
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.1.1
-Imports: Rsubread,
+Imports: 
+    Rsubread,
     GenomeInfoDb,
     Rsamtools,
-    utils,
-    graphics,
-    grDevices
+    ggplot2,
+    ggiraph,
+    shiny
+VignetteBuilder: knitr

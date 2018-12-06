@@ -39,8 +39,8 @@ usePosition <- function(purpose) {
 #' @param readsFile The file that store the read sequences, a string.
 #' @param referencesFile The file that store the reference sequences usually
 #' transcripts, a string.
-#' @return A data frame contains the name of read, name of reference
-#' seqeunces, match/unmatch position and reference start position.
+#' @return A data frame in special format in this package. As state in
+#' \code{positionNonExon}.
 #'
 #' @examples
 #' readsFile <- system.file("extdata/testdata", "RRHreads.fasta",
@@ -65,8 +65,8 @@ findNonExon <- function(readsFile, referencesFile) {
 #' @param readsFile The file that store the read sequences, a string.
 #' @param referenceFile The file that store the reference sequences usually
 #' introns, a string.
-#' @return A data frame contains the name of read, name of reference
-#' seqeunces, match/unmatch position and reference start position.
+#' @return A data frame in special format in this package. As state in
+#' \code{positionNonExon}.
 #'
 #' @examples
 #' readsFile <- system.file("extdata/testdata", "RRHreads.fasta",

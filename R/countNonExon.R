@@ -36,7 +36,8 @@ countNonExon <- function(findDataFrame, verifyDataFrame = data.frame()) {
   }
   # If there is no missing then analyze if the non-exon sequences are introns
 
-  # Check verifyDataFrame
+  # Check verifyDataFrame, the row name of data frame is spcified in
+  # positinNonExon function. It should have specific row names
   if (! Reduce("&", c("referenceName", "referenceStart", "readUnmatch",
     "readMatch") %in% rownames(verifyDataFrame))) {
     stop("The input should be a data frame in specify format. See help.")

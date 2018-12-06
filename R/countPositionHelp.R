@@ -23,6 +23,8 @@
 #' countPositionHelp(dataFrame)
 #' }
 countPositionHelp <- function(informationdf) {
+  # Verify data frame, the row name of data frame is spcified in
+  # positinNonExon function. It should have specific row names
   if (! Reduce("&", c("referenceName", "referenceStart", "readUnmatch",
     "readMatch") %in% rownames(informationdf))) {
     stop("The input should be a data frame in specify format. See help.")

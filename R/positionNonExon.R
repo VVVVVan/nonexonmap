@@ -12,8 +12,11 @@
 #' @param readsFile The file that store the read sequences, a string.
 #' @param referencesFile The file that store the reference sequences, a string.
 #' @param outputsFile The name of output file in BAM format, a string.
-#' @return A data frame contains the name of read, name of reference
-#' seqeunces, match/unmatch position and reference start position.
+#' @return A data frame in special format in this package. The row names of
+#' the data frame are readName (name of read sequences), referenceName (name of
+#' reference seqeunces), referenceStart (the start position alignmnet in
+#' reference seqeunces), readMatch and readUnmatch (match/unmatch length of
+#' reads). The column names of the data frame are the name of read sequences.
 #'
 #' @seealso \code{\link[Rsubread]{buildindex}} Build an index for read mapping
 #' to perform.
@@ -49,6 +52,8 @@ positionNonExon <- function(readsFile, referencesFile, outputsFile) {
 
   # Store useful information from BAM file for later use.
   output <- Rsamtools::scanBam(outputsFile)
+  # The output has lots of information, the information that is useful for
+  # this function are qname, cigar, rname, pos.
   readName <- output[[1]][["qname"]] # qname is read name
   readAlign <- output[[1]][["cigar"]] # cigar is read alignment information
   referenceName <- as.character(output[[1]][["rname"]]) # ranme is ref name

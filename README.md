@@ -26,8 +26,9 @@ The example outcome is like:
 You can also change the input files to make different plots, the example input files are listed in ./inst/extdata/testdata.
 
 
-Available Vignette:
-    `vignette(package = "nonexonmap")`
+Not Available Vignette:
+    `vignette(package = "nonexonmap")` 
+    but a Rmd file is exits in `./vignettes/nonexonmapvignette.Rmd`
     
     
 Load the package (outside of this project) with:

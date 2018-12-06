@@ -17,14 +17,16 @@ Encoding: UTF-8
 LazyData: true
 Suggests:
     testthat,
+    GenomeInfoDb,
+    ggplot2,
+    ggiraph,
+    devtools,
     knitr,
-    rmarkdown
+    rmarkdown,
+    BiocCheck
 RoxygenNote: 6.1.1
 Imports: 
     Rsubread,
-    GenomeInfoDb,
     Rsamtools,
-    ggplot2,
-    ggiraph,
     shiny
 VignetteBuilder: knitr

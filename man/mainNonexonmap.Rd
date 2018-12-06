@@ -20,10 +20,10 @@ A list of list with reference name, alignment position, alignment counts and per
 \code{mainNonExonMap} This is the main function for my functions in this package. The function will plot the non-exon position on reference gene and if they are introns (if intronsFile exist).
 }
 \examples{
-\dontrun{
 readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
 transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
 intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
+\dontrun{
 mainNonExonMap(readsFile, transcriptsFile)
 mainNonExonMap(readsFile, transcriptsFile, intronsFile)
 }

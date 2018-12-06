@@ -10,11 +10,11 @@ The `mainNonExonMap` is an main function to run the functions in my package. The
 
 The `runNonExonApp` is a function to run the shiny app and plot the data frame created from `mainNonExonMap`.
 
-There are two functions that could be used by users:
+There are four functions that could not be used by users:
 `findNonExon` will find the location of non-exon sequences on reference sequences and matches & unmatches in reads.
 `verifyNonExon` will verify if the non-exon sequences are introns.
 
-The `countNonExon` and `countPositionHelp` functions are not exported since they are helper functions for `mainNonExonMap`.
+The `countNonExon` and `countPositionHelp` functions are helper functions for `mainNonExonMap` to count.
 
 ## Example outcome.
 ```R
@@ -24,6 +24,16 @@ The example outcome is like:
 ![](./inst/extdata/testdata/example_output.png)
 
 You can also change the input files to make different plots, the example input files are listed in ./inst/extdata/testdata.
+
+
+Available Vignette:
+    `vignette(package = "nonexonmap")`
+    
+    
+Load the package (outside of this project) with:
+    `devtools::install_github("VVVVVan/nonexonmap")`
+
+
 -----------------------------------------------
 
 Some useful keyboard shortcuts for package authoring:
@@ -34,11 +44,4 @@ Some useful keyboard shortcuts for package authoring:
 * Check Package:             `Cmd + Shift + E` or `devtools::check()`
 
 -----------------------------------------------
-
-
-Load the package (outside of this project) with:
-    `devtools::install_github("VVVVVan/nonexonmap")`
-
-Available Vignette:
-    `vignette(package = "nonexonmap")`
 

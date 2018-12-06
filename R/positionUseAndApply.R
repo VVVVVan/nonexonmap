@@ -2,15 +2,19 @@
 
 #' A closure for function \code{positionNonExon}.
 #'
-#' \code{usePosition} form different output file for different purpose of using function \code{positionNonExon} To ensure that the output file of \code{positionNonExon} is in BAM format.
+#' \code{usePosition} form different output file for different purpose of
+#' using function \code{positionNonExon} To ensure that the output file of
+#' \code{positionNonExon} is in BAM format.
 #'
 #' @param purpose output file form to determine the outputFile name, a string.
 #' @return a function.
 #'
 #' @examples
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta",
+#' package = "nonexonmap")
+#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta",
+#' package = "nonexonmap")
 #' \dontrun{
-#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
-#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
 #' findNonExon <- usePosition("find")
 #' dataFrame1 <- findNonExon(readsFile, transcriptsFile)
 #' }
@@ -27,16 +31,23 @@ usePosition <- function(purpose) {
 
 #' Applied to find the non-exon sequences in reads.
 #'
-#' \code{findNonExon} use \code{positionNonExon} to align the reads with reference sequences and output a BAM file named "findNonExonTranscripts.BAM". The return value is a data frame with all position of alignment and number of matches and unmatches.
+#' \code{findNonExon} use \code{positionNonExon} to align the reads with
+#' reference sequences and output a BAM file named
+#' "findNonExonTranscripts.BAM". The return value is a data frame with all
+#' position of alignment and number of matches and unmatches.
 #'
 #' @param readsFile The file that store the read sequences, a string.
-#' @param referencesFile The file that store the reference sequences usually transcripts, a string.
-#' @return A data frame contains the name of read, name of reference seqeunces, match/unmatch position and reference start position.
+#' @param referencesFile The file that store the reference sequences usually
+#' transcripts, a string.
+#' @return A data frame contains the name of read, name of reference
+#' seqeunces, match/unmatch position and reference start position.
 #'
 #' @examples
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta",
+#' package = "nonexonmap")
+#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta",
+#' package = "nonexonmap")
 #' \dontrun{
-#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
-#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
 #' dataFrame <- findNonExon(readsFile, transcriptsFile)
 #' }
 #' @export
@@ -46,16 +57,23 @@ findNonExon <- function(readsFile, referencesFile) {
 
 #' Applied to verify if the non-exon sequences are introns.
 #'
-#' \code{verifyNonExon} use \code{positionNonExon} to align the reads with introns and output a BAM file named "verifyNonExonIntrons.BAM". The return value is a data frame with all position of alignment and number of matches and unmatches.
+#' \code{verifyNonExon} use \code{positionNonExon} to align the reads with
+#' introns and output a BAM file named "verifyNonExonIntrons.BAM". The return
+#' value is a data frame with all position of alignment and number of matches
+#' and unmatches.
 #'
 #' @param readsFile The file that store the read sequences, a string.
-#' @param referenceFile The file that store the reference sequences usually introns, a string.
-#' @return A data frame contains the name of read, name of reference seqeunces, match/unmatch position and reference start position.
+#' @param referenceFile The file that store the reference sequences usually
+#' introns, a string.
+#' @return A data frame contains the name of read, name of reference
+#' seqeunces, match/unmatch position and reference start position.
 #'
 #' @examples
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta",
+#'   package = "nonexonmap")
+#' intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta",
+#'  package = "nonexonmap")
 #' \dontrun{
-#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
-#' intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
 #' dataFrame <- verifyNonExon(readsFile, intronsFile)
 #' }
 #' @export

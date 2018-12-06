@@ -2,18 +2,24 @@
 
 #' An main function to plot the non-exon on reference gene.
 #'
-#' \code{mainNonExonMap} This is the main function for my functions in this package. The function will plot the non-exon position on reference gene and if they are introns (if intronsFile exist).
+#' \code{mainNonExonMap} This is the main function for my functions in this
+#' package. The function will plot the non-exon position on reference gene and
+#' if they are introns (if intronsFile exist).
 #'
 #' @param readsFile The file that store the read sequences, a string.
 #' @param transcriptsFile The file that store the reference sequences, a string.
 #' @param intronsFile The file that contains the intron sequences, a string.
-#' @return A list of list with reference name, alignment position, alignment counts and percentage of introns if there is a verifyDataFrame.
+#' @return A list of list with reference name, alignment position, alignment
+#' counts and percentage of introns if there is a verifyDataFrame.
 #'
 #' @examples
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta",
+#' package = "nonexonmap")
+#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta",
+#' package = "nonexonmap")
+#' intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta",
+#' package = "nonexonmap")
 #' \dontrun{
-#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
-#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
-#' intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
 #' mainNonExonMap(readsFile, transcriptsFile)
 #' mainNonExonMap(readsFile, transcriptsFile, intronsFile)
 #' }

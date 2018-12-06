@@ -1,16 +1,24 @@
 # countPositionHelp.R
 
-#' Help \code{countNonExon} to count the numbers of non-exon sequences on reference sequences.
+#' Help \code{countNonExon} to count the numbers of non-exon sequences on
+#' reference sequences.
 #'
-#' \code{countPositionHelp} is a help function for \code{countNonExon}. It takes the data frame and analyze the number of non-exon sequences on a specific place in reference sequences.
+#' \code{countPositionHelp} is a help function for \code{countNonExon}. It
+#' takes the data frame and analyze the number of non-exon sequences on a
+#' specific place in reference sequences.
 #'
-#' @param informationdf the data frame that store the reads and reference information for funciton to analyze. Should compute from \code{findNonExon}, \code{verifyNonExon} or relateive functions.
-#' @return A list of lists with order of reference sequences name, aligned index on reference sequence, number of aligned reads on the spot.
+#' @param informationdf the data frame that store the reads and reference
+#' information for funciton to analyze. Should compute from
+#' \code{findNonExon}, \code{verifyNonExon} or relateive functions.
+#' @return A list of lists with order of reference sequences name, aligned
+#' index on reference sequence, number of aligned reads on the spot.
 #'
 #' @examples
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta",
+#' package = "nonexonmap")
+#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta",
+#' package = "nonexonmap")
 #' \dontrun{
-#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
-#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
 #' dataFrame <- findNonExon(readsFile, transcriptsFile)
 #' countPositionHelp(dataFrame)
 #' }
@@ -20,7 +28,8 @@ countPositionHelp <- function(informationdf) {
     stop("The input should be a data frame in specify format. See help.")
   }
   # Find the unique reference sequeces. StrikeR. (2018). StackOverflow
-  # https://stackoverflow.com/questions/28628384/count-number-of-unique-values-per-row
+  # https://stackoverflow.com/questions/28628384/count-number-of-unique-values
+  # -per-row
   transcripts <- as.list(apply(informationdf, 1,
     function(x){unique(x)})$referenceName)
 

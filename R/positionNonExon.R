@@ -1,27 +1,36 @@
 # positionNonExon.R
 
-#' Output the positions of reads on reference sequences with number of match/unmatch.
+#' Output the positions of reads on reference sequences with number of match
+#' /unmatch.
 #'
 #'
-#' \code{positionNonExon} uses \code{\link[Rsubread]{buildindex}} and \\code{\link[Rsubread]{align}} to form an alignment file. From the file, output the position of non-exon sequences exist on the references sequences and the match/unmatch numbers in the reads itself.
+#' \code{positionNonExon} uses \code{\link[Rsubread]{buildindex}} and
+#' \code{\link[Rsubread]{align}} to form an alignment file. From the file,
+#' output the position of non-exon sequences exist on the references sequences
+#' and the match/unmatch numbers in the reads itself.
 #'
 #' @param readsFile The file that store the read sequences, a string.
 #' @param referencesFile The file that store the reference sequences, a string.
 #' @param outputsFile The name of output file in BAM format, a string.
-#' @return A data frame contains the name of read, name of reference seqeunces, match/unmatch position and reference start position.
+#' @return A data frame contains the name of read, name of reference
+#' seqeunces, match/unmatch position and reference start position.
 #'
-#' @seealso \code{\link[Rsubread]{buildindex}} Build an index for read mapping to perform.
-#' @seealso \code{\link[Rsubread]{align}} Align DNA and RNA sequencing reads and report.
+#' @seealso \code{\link[Rsubread]{buildindex}} Build an index for read mapping
+#' to perform.
+#' @seealso \code{\link[Rsubread]{align}} Align DNA and RNA sequencing reads
+#' and report.
 #' @seealso \code{\link[Rsamtools]{scanBam}} Read the Bam file.
 #'
 #' @examples
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta",
+#' package = "nonexonmap")
+#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta",
+#' package = "nonexonmap")
+#' intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta",
+#' package = "nonexonmap")
 #' \dontrun{
-#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
-#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
-#' intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
 #' positionNonExon(readsFile, transcriptsFile, "outputReadsTranscript.BAM")
 #' positionNonExon(readsFile, intronsFile, "outputReadsIntron.BAM")
-#' positionNonExon(transcriptsFile, intronsFile, "outputExonWholegene.BAM")
 #' }
 positionNonExon <- function(readsFile, referencesFile, outputsFile) {
   # Check if the file exist, if not stop and return a message.

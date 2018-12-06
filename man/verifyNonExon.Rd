@@ -18,9 +18,9 @@ A data frame contains the name of read, name of reference seqeunces, match/unmat
 \code{verifyNonExon} use \code{positionNonExon} to align the reads with introns and output a BAM file named "verifyNonExonIntrons.BAM". The return value is a data frame with all position of alignment and number of matches and unmatches.
 }
 \examples{
-\dontrun{
 readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
 intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
+\dontrun{
 dataFrame <- verifyNonExon(readsFile, intronsFile)
 }
 }

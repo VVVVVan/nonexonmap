@@ -2,27 +2,36 @@
 % Please edit documentation in R/countNonExon.R
 \name{countNonExon}
 \alias{countNonExon}
-\title{Count the numbers, the position, percentage of introns for non-exon sequences on reference sequences.}
+\title{Count the numbers, the position, percentage of introns for non-exon
+sequences on reference sequences.}
 \usage{
 countNonExon(findDataFrame, verifyDataFrame = data.frame())
 }
 \arguments{
-\item{findDataFrame}{the data frame that store the information for funciton to analyze. Should compute from \code{findNonExon} or relateive functions.}
+\item{findDataFrame}{the data frame that store the information for funciton
+to analyze. Should compute from \code{findNonExon} or relateive functions.}
 
-\item{verifyDataFrame}{the data frame that store the information for funciton to analyze. Should compute from \code{verifyNonExon} or relateive functions.}
+\item{verifyDataFrame}{the data frame that store the information for
+funciton to analyze. Should compute from \code{verifyNonExon} or relateive
+functions.}
 }
 \value{
-A list of list with reference name, alignment position, alignment counts and percentage of introns if there is a verifyDataFrame.
+A list of list with reference name, alignment position, alignment
+counts and percentage of introns if there is a verifyDataFrame.
 }
 \description{
-\code{countNonExon} is a function that is used to count the number of non-exon sequences on specific position of reference sequences and output the percentage of introns in those non-exon sequences.
+\code{countNonExon} is a function that is used to count the number of non-
+exon sequences on specific position of reference sequences and output the
+percentage of introns in those non-exon sequences.
 }
 \examples{
+readsFile <- system.file("extdata/testdata", "RRHreads.fasta",
+package = "nonexonmap")
+transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta",
+package = "nonexonmap")
+intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta",
+package = "nonexonmap")
 \dontrun{
-readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
-transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
-intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
-
 finddataframe <- findNonExon(readsFile, transcriptsFile)
 countNonExon(finddataframe)
 verifydataframe <- verifyNonExon(readsFile, intronsFile)

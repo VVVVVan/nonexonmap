@@ -6,6 +6,14 @@
 \usage{
 runNonExonApp()
 }
+\value{
+No return value but will pop up a shiny page.
+}
 \description{
 \code{runNonExonApp} launches the shiny app for which the code has been placed in  \code{./inst/shiny-scripts/nonexonmapApp/}.
+}
+\examples{
+\dontrun{
+runNonExonApp()
+}
 }

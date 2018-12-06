@@ -9,12 +9,12 @@ library(ggplot2)
 library(ggiraph)
 
 # Load data ----
-load(system.file("extdata/testdata", "testDataCountVerify.Rdata", package = "nonexonmap"))
+load(system.file("extdata/testdata", "testDataCount.Rdata", package = "nonexonmap"))
 
 # Define UI ----
 myUi <- fluidPage(
 
-  titlePanel("Non-exon sequence mapping on reference gene"),
+  titlePanel("Non-exon sequence mapping on reference sequence"),
   sidebarLayout( position = "right",
     sidebarPanel(
       helpText(h3("Please input reads file, transcripts file and introns file as needed.")),
@@ -25,8 +25,11 @@ myUi <- fluidPage(
                    label = "Input transcripts file:"
                    ),
       fileInput(inputId = "intronsFile",
-                   label = "Input introns file:"
+                  label = "Input introns file:"
                    ),
+      textInput(inputId = "referenceSeq",
+                  label = "Reference Sequence",
+                  value = "Enter text..."),
       # Horizontal line
       tags$hr(),
       helpText(h3("Please change the color of low and high value and what the color represents as needed.")),
@@ -64,7 +67,7 @@ myServer <- function(input, output) {
           Default transcriptsFile is RRHtranscripts.fasta in extdata of nonexonmap package.
           Default intronsFile is RRHintrons.fasta in extdata of nonexonmap package.
           Please upload reads file or transcriptsFile.")
-      countLists <- testDataCountVerify
+      countLists <- testCountNonExon
     } else if (is.null(input$intronsFile)) {
       message <-
         sprintf("Uploaded reeds file is %s.
@@ -84,8 +87,13 @@ myServer <- function(input, output) {
     output$message <- renderText({message})
 
     output$plot <- renderggiraph({
+      if (input$referenceSeq == "Enter text..." || input$referenceSeq == "") {
+        i <- 1L
+      } else {
+        i <- which(countLists[[1]] == input$referenceSeq)
+      }
 
-      x <- as.numeric(countLists[[2]][[1]]) # position of introns
+      x <- as.numeric(countLists[[2]][[i]]) # position of introns
 
       # Create a table to present the number of occurance of non-exon sequence
       # exist at certain position
@@ -96,12 +104,13 @@ myServer <- function(input, output) {
       averageIntronPercent <- c(1:8)
       for (j in 1:nrow(data)) {
         indexes <- which(x %in% data$x[j])
-        info[j] <- sprintf("Putative intron(non-exon) exist at %d\n", as.numeric(data$x[j]))
+        info[j] <- sprintf("Putative intron(non-exon) exist at %d\n",
+          as.numeric(data$x[j]))
 
         # Add the percentage of introns if countLists have the information
         totalIntronPercent <- 0L
         if (length(countLists) == 4) {
-          z <- countLists[[4]][[1]]
+          z <- countLists[[4]][[i]]
           for (index in indexes) {
             totalIntronPercent <- totalIntronPercent + as.numeric(z[index]*100)
             info[j] <- paste(info[j],
@@ -128,12 +137,13 @@ myServer <- function(input, output) {
         scale_y_continuous(name  = "Number of non-exon exists",
           breaks = c(1:(max(data$Freq)+1)),
           limits = c(0, max(data$Freq) +1)) +
-        xlab(sprintf("Reference sequence %s", countLists[[1]][[1]])) +
+        xlab(sprintf("Reference sequence %s", countLists[[1]][[i]])) +
         ggtitle(sprintf("Number of non-exon sequence located at\n reference sequence %s",
-          countLists[[1]][[1]])) +
+          countLists[[1]][[i]])) +
         scale_colour_gradient(low = input$lowColor, high = input$highColor)
 
-      girafe(code = print(my_gg))
+    girafe(code = print(my_gg))
+
     })
   })
 }

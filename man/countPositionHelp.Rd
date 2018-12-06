@@ -2,23 +2,31 @@
 % Please edit documentation in R/countPositionHelp.R
 \name{countPositionHelp}
 \alias{countPositionHelp}
-\title{Help \code{countNonExon} to count the numbers of non-exon sequences on reference sequences.}
+\title{Help \code{countNonExon} to count the numbers of non-exon sequences on
+reference sequences.}
 \usage{
 countPositionHelp(informationdf)
 }
 \arguments{
-\item{informationdf}{the data frame that store the reads and reference information for funciton to analyze. Should compute from \code{findNonExon}, \code{verifyNonExon} or relateive functions.}
+\item{informationdf}{the data frame that store the reads and reference
+information for funciton to analyze. Should compute from
+\code{findNonExon}, \code{verifyNonExon} or relateive functions.}
 }
 \value{
-A list of lists with order of reference sequences name, aligned index on reference sequence, number of aligned reads on the spot.
+A list of lists with order of reference sequences name, aligned
+index on reference sequence, number of aligned reads on the spot.
 }
 \description{
-\code{countPositionHelp} is a help function for \code{countNonExon}. It takes the data frame and analyze the number of non-exon sequences on a specific place in reference sequences.
+\code{countPositionHelp} is a help function for \code{countNonExon}. It
+takes the data frame and analyze the number of non-exon sequences on a
+specific place in reference sequences.
 }
 \examples{
+readsFile <- system.file("extdata/testdata", "RRHreads.fasta",
+package = "nonexonmap")
+transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta",
+package = "nonexonmap")
 \dontrun{
-readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
-transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
 dataFrame <- findNonExon(readsFile, transcriptsFile)
 countPositionHelp(dataFrame)
 }

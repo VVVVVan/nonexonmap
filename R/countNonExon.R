@@ -1,19 +1,28 @@
 # countNonExon.R
 
-#' Count the numbers, the position, percentage of introns for non-exon sequences on reference sequences.
+#' Count the numbers, the position, percentage of introns for non-exon
+#' sequences on reference sequences.
 #'
-#' \code{countNonExon} is a function that is used to count the number of non-exon sequences on specific position of reference sequences and output the percentage of introns in those non-exon sequences.
+#' \code{countNonExon} is a function that is used to count the number of non-
+#' exon sequences on specific position of reference sequences and output the
+#' percentage of introns in those non-exon sequences.
 #'
-#' @param findDataFrame the data frame that store the information for funciton to analyze. Should compute from \code{findNonExon} or relateive functions.
-#' @param verifyDataFrame the data frame that store the information for funciton to analyze. Should compute from \code{verifyNonExon} or relateive functions.
-#' @return A list of list with reference name, alignment position, alignment counts and percentage of introns if there is a verifyDataFrame.
+#' @param findDataFrame the data frame that store the information for funciton
+#' to analyze. Should compute from \code{findNonExon} or relateive functions.
+#' @param verifyDataFrame the data frame that store the information for
+#' funciton to analyze. Should compute from \code{verifyNonExon} or relateive
+#' functions.
+#' @return A list of list with reference name, alignment position, alignment
+#' counts and percentage of introns if there is a verifyDataFrame.
 #'
 #' @examples
+#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta",
+#' package = "nonexonmap")
+#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta",
+#' package = "nonexonmap")
+#' intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta",
+#' package = "nonexonmap")
 #' \dontrun{
-#' readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
-#' transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
-#' intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
-#'
 #' finddataframe <- findNonExon(readsFile, transcriptsFile)
 #' countNonExon(finddataframe)
 #' verifydataframe <- verifyNonExon(readsFile, intronsFile)
@@ -44,11 +53,11 @@ countNonExon <- function(findDataFrame, verifyDataFrame = data.frame()) {
       # Check if the reference gene is the same
       if (findDataFrame["referenceName", i] == transcript) {
         nonExonUnmatches <- as.integer(strsplit(
-                             findDataFrame["readUnmatch", i], ",")[[1]])
+          findDataFrame["readUnmatch", i], ",")[[1]])
         nonIntronUnmatches <- as.integer(strsplit(
-                             verifyDataFrame["readUnmatch", i], ",")[[1]])
+          verifyDataFrame["readUnmatch", i], ",")[[1]])
         nonIntronMatches <- as.integer(strsplit(
-                             verifyDataFrame["readMatch", i], ",")[[1]])
+          verifyDataFrame["readMatch", i], ",")[[1]])
 
         # Since reads are aligned to transcripts, by default, only start and
         # end part of the reads will hang over. Thus, compute two unmatches.

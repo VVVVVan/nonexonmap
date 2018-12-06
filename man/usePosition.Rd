@@ -16,9 +16,9 @@ a function.
 \code{usePosition} form different output file for different purpose of using function \code{positionNonExon} To ensure that the output file of \code{positionNonExon} is in BAM format.
 }
 \examples{
-\dontrun{
 readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
 transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
+\dontrun{
 findNonExon <- usePosition("find")
 dataFrame1 <- findNonExon(readsFile, transcriptsFile)
 }

@@ -2,7 +2,8 @@
 % Please edit documentation in R/positionNonExon.R
 \name{positionNonExon}
 \alias{positionNonExon}
-\title{Output the positions of reads on reference sequences with number of match/unmatch.}
+\title{Output the positions of reads on reference sequences with number of match
+/unmatch.}
 \usage{
 positionNonExon(readsFile, referencesFile, outputsFile)
 }
@@ -14,25 +15,33 @@ positionNonExon(readsFile, referencesFile, outputsFile)
 \item{outputsFile}{The name of output file in BAM format, a string.}
 }
 \value{
-A data frame contains the name of read, name of reference seqeunces, match/unmatch position and reference start position.
+A data frame contains the name of read, name of reference
+seqeunces, match/unmatch position and reference start position.
 }
 \description{
-\code{positionNonExon} uses \code{\link[Rsubread]{buildindex}} and \\code{\link[Rsubread]{align}} to form an alignment file. From the file, output the position of non-exon sequences exist on the references sequences and the match/unmatch numbers in the reads itself.
+\code{positionNonExon} uses \code{\link[Rsubread]{buildindex}} and
+\code{\link[Rsubread]{align}} to form an alignment file. From the file,
+output the position of non-exon sequences exist on the references sequences
+and the match/unmatch numbers in the reads itself.
 }
 \examples{
+readsFile <- system.file("extdata/testdata", "RRHreads.fasta",
+package = "nonexonmap")
+transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta",
+package = "nonexonmap")
+intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta",
+package = "nonexonmap")
 \dontrun{
-readsFile <- system.file("extdata/testdata", "RRHreads.fasta", package = "nonexonmap")
-transcriptsFile <- system.file("extdata/testdata", "RRHtranscript.fasta", package = "nonexonmap")
-intronsFile <- system.file("extdata/testdata", "RRHintrons.fasta", package = "nonexonmap")
 positionNonExon(readsFile, transcriptsFile, "outputReadsTranscript.BAM")
 positionNonExon(readsFile, intronsFile, "outputReadsIntron.BAM")
-positionNonExon(transcriptsFile, intronsFile, "outputExonWholegene.BAM")
 }
 }
 \seealso{
-\code{\link[Rsubread]{buildindex}} Build an index for read mapping to perform.
+\code{\link[Rsubread]{buildindex}} Build an index for read mapping
+to perform.
 
-\code{\link[Rsubread]{align}} Align DNA and RNA sequencing reads and report.
+\code{\link[Rsubread]{align}} Align DNA and RNA sequencing reads
+and report.
 
 \code{\link[Rsamtools]{scanBam}} Read the Bam file.
 }

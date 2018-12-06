@@ -61,7 +61,7 @@ mainNonExonMap(readsFile,
 ```{r, eval=FALSE}
 runNonExonApp() # Pop out the shiny page
 ```
-![Figure 1: The example shiny page (a screenshot )](../inst/extdata/testdata/example_output.png "example output"){width=90%}
+![Figure 1: The example shiny page (a screenshot ). User can know more information about the site by hover mouse on the point in shiny app. ](../inst/extdata/testdata/example_output.png "example output"){width=90%}
 
 #### `mainNonExonMap` function
 ```{r}
@@ -82,15 +82,12 @@ mainNonExonMap(readsFile, transcriptsFile, intronsFile)
 ### Input for shiny app (after run `runNonExonApp`)
   The file inputs is the same as the input for `mainNonExonMap()` function.
   
-  In shiny app, there is one more input, the reference sequence. This allows users to choose which transcript seqeuence they would like to know more about if there are more than one transcript seqeunces in trancripts file. 
-  
   Some **default** inputs for shiny app:
   
 1. **Input reads file** is `./inst/extdata/testdata/RRH_reads.fasta` in `nonexonmap` package
 1. **Input transcripts file** is `./inst/extdata/testdata/RRHtranscripts.fasta` in `nonexonmap` package
 1. **Input introns file** is `./inst/extdata/testdata/RRHintrons.fasta` in `nonexonmap` package
-1. **Reference Sequence** is the first transcript sequence in transcripts file.
-  
+
 ### Not exported functions
   There are several functions that could be used by users but are used to process the data.
   
@@ -99,6 +96,13 @@ mainNonExonMap(readsFile, transcriptsFile, intronsFile)
 1. `findNonExon` and `verifyNonExon are the functions created from factory function. They are used to read files and align the reads or introns file to transcripts file. The return value of the function is a data frame with all position of alignment, and number of matches and unmatches to the transcripts sequences.
 1. `countNonExon` is a function to count the number and record the position of non-exon sequences exist on transcript sequences. It will also count the average percentage of introns in those non-exon sequences at each postion if there is introns file as input.
 1. `countPositionHelp` is a helper function for `countNonExon` to count the number of non-exon seqeunces exist on each transcript sequence.
+
+### One more examples
+#### Reads with more than one non-exon at one specific position
+1. **Input reads file** is `./inst/extdata/testdata/RRH_reads2.fasta` in `nonexonmap` package
+1. **Input transcripts file** is `./inst/extdata/testdata/RRHtranscripts.fasta` in `nonexonmap` package
+1. **Input introns file** is `./inst/extdata/testdata/RRHintrons.fasta` in `nonexonmap` package
+![Figure 2: The example shiny page for more than one non-exon at one position(a screenshot )](../inst/extdata/testdata/example_output2.png "example output"){width=90%}
 
 
 

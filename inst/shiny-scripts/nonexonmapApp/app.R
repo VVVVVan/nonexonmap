@@ -27,9 +27,6 @@ myUi <- fluidPage(
       fileInput(inputId = "intronsFile",
                   label = "Input introns file:"
                    ),
-      textInput(inputId = "referenceSeq",
-                  label = "Reference Sequence",
-                  value = "Enter text..."),
       # Horizontal line
       tags$hr(),
       helpText(h3("Please change the color of low and high value and what the color represents as needed.")),
@@ -87,12 +84,7 @@ myServer <- function(input, output) {
     output$message <- renderText({message})
 
     output$plot <- renderggiraph({
-      if (input$referenceSeq == "Enter text..." || input$referenceSeq == "") {
-        i <- 1L
-      } else {
-        i <- which(countLists[[1]] == input$referenceSeq)
-      }
-
+      i <- 1L
       x <- as.numeric(countLists[[2]][[i]]) # position of introns
 
       # Create a table to present the number of occurance of non-exon sequence
